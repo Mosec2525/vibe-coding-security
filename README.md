@@ -1,6 +1,6 @@
 # Vibe Coding Security
 
-Vibe Coding Security is a VS Code extension that scans JavaScript and TypeScript code for security issues using Semgrep and local OWASP-style rules.
+Vibe Coding Security is a VS Code extension that scans JavaScript and TypeScript code for security issues using **Semgrep** and local OWASP-style rules.
 
 ## Features
 
@@ -22,13 +22,10 @@ Before using the extension, make sure you have:
 - Python installed
 - Semgrep installed
 
-The extension will check for Semgrep when it starts.
+The extension checks for **Semgrep** when it starts.
 
-## How to Run
-
-1. Open the project in VS Code
-2. Run:
+If Semgrep is missing, the extension will try to help with setup.  
+If automatic installation does not work, install Semgrep manually on Windows with one of these commands:
 
 ```bash
-npm install
-npm run compile
+python -m pip install semgrep
