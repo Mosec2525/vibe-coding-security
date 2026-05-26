@@ -1,52 +1,358 @@
 {
-  "name": "vibe-coding-security",
-  "displayName": "Mosec_Vibe Coding Security",
-  "description": "AI-assisted secure coding with Semgrep",
-  "version": "0.0.1",
+  "name": "vibesec",
+  "displayName": "VibeSec",
+  "description": "AI-assisted security scanner for vibe coders",
+  "version": "0.8.6",
   "engines": {
-    "vscode": "^1.110.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Linters"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vibe-coding-security.scanCurrentFile",
-        "title": "Vibe Coding Security: Scan Current File"
+        "command": "vibesec.scanCurrentFile",
+        "title": "Scan Current File",
+        "category": "VibeSec",
+        "icon": "$(play)"
       },
       {
-        "command": "vibe-coding-security.scanProject",
-        "title": "Vibe Coding Security: Scan Project"
+        "command": "vibesec.goToFinding",
+        "title": "Go to Finding",
+        "category": "VibeSec"
+      },
+      {
+        "command": "vibesec.reloadPolicy",
+        "title": "Reload Policy",
+        "category": "VibeSec",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vibesec.openPolicyFile",
+        "title": "Open Policy File",
+        "category": "VibeSec"
+      },
+      {
+        "command": "vibesec.copyDescription",
+        "title": "Copy Description",
+        "category": "VibeSec",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "vibesec.scanSelected",
+        "title": "Scan Selected",
+        "category": "VibeSec",
+        "icon": "$(play)"
+      },
+      {
+        "command": "vibesec.scanWorkspace",
+        "title": "Scan Whole Project",
+        "category": "VibeSec",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "vibesec.setApiKey",
+        "title": "Set API Key",
+        "category": "VibeSec"
+      },
+      {
+        "command": "vibesec.clearApiKey",
+        "title": "Clear API Key",
+        "category": "VibeSec"
+      },
+      {
+        "command": "vibesec.testApiKey",
+        "title": "Test API Key",
+        "category": "VibeSec"
+      },
+      {
+        "command": "vibesec.generatePrompts",
+        "title": "Generate Prompts",
+        "category": "VibeSec",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "vibesec.copyPromptForVuln",
+        "title": "Copy Prompt for Vulnerability",
+        "category": "VibeSec",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "vibesec.copyPromptForFile",
+        "title": "Copy Prompt for File",
+        "category": "VibeSec",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "vibesec.copyPromptForAll",
+        "title": "Copy Prompt for All Findings",
+        "category": "VibeSec",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "vibesec.openControlCenter",
+        "title": "Open Control Center",
+        "category": "VibeSec",
+        "icon": "$(settings-gear)"
       }
     ],
-    "views": {
-      "explorer": [
+    "viewsContainers": {
+      "activitybar": [
         {
-          "id": "vibeCodingSecurity.findingsView",
-          "name": "Vibe Coding Findings"
+          "id": "vibesec",
+          "title": "VibeSec",
+          "icon": "media/vibesec-icon.svg"
         }
       ]
-    }
+    },
+    "views": {
+      "vibesec": [
+        {
+          "id": "vibesec.analysisPanel",
+          "name": "Analysis",
+          "type": "webview",
+          "contextualTitle": "VibeSec"
+        }
+      ]
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "vibesec.scanSelected",
+          "when": "explorerResourceIsFolder || resourceScheme == 'file'",
+          "group": "vibesec@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "vibesec.scanCurrentFile",
+          "when": "resourceScheme == 'file'",
+          "group": "navigation@99"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "vibesec.openControlCenter",
+          "when": "view == vibesec.analysisPanel",
+          "group": "navigation@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vibesec.copyDescription",
+          "when": "false"
+        },
+        {
+          "command": "vibesec.goToFinding",
+          "when": "false"
+        },
+        {
+          "command": "vibesec.copyPromptForVuln",
+          "when": "false"
+        },
+        {
+          "command": "vibesec.copyPromptForFile",
+          "when": "false"
+        },
+        {
+          "command": "vibesec.scanSelected",
+          "when": "false"
+        }
+      ]
+    },
+    "colors": [
+      {
+        "id": "vibesec.errorForeground",
+        "description": "Color for error-severity findings in the VibeSec panel",
+        "defaults": {
+          "dark": "#F48771",
+          "light": "#E51400",
+          "highContrast": "#F48771",
+          "highContrastLight": "#E51400"
+        }
+      },
+      {
+        "id": "vibesec.warningForeground",
+        "description": "Color for warning-severity findings in the VibeSec panel",
+        "defaults": {
+          "dark": "#CCA700",
+          "light": "#915100",
+          "highContrast": "#CCA700",
+          "highContrastLight": "#915100"
+        }
+      },
+      {
+        "id": "vibesec.infoForeground",
+        "description": "Color for info-severity findings in the VibeSec panel",
+        "defaults": {
+          "dark": "#75BEFF",
+          "light": "#306EAD",
+          "highContrast": "#75BEFF",
+          "highContrastLight": "#306EAD"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "VibeSec",
+      "properties": {
+        "vibesec.semgrepPath": {
+          "type": "string",
+          "default": "semgrep",
+          "description": "Path to the Semgrep binary. Change this if semgrep is not on your PATH (e.g. /usr/local/bin/semgrep).",
+          "scope": "machine-overridable"
+        },
+        "vibesec.autoScanOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically scan on file save. Off by default — enable only if you want continuous feedback.",
+          "scope": "resource"
+        },
+        "vibesec.showInlineDecorations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inline diagnostic squiggles for VibeSec findings directly in the editor.",
+          "scope": "resource"
+        },
+        "vibesec.fileExtensions": {
+          "type": "string",
+          "default": ".py .pyi .js .jsx .mjs .cjs .ts .tsx .java .go .rb .php .c .h .cpp .hpp .cc .cs .rs .swift .kt .kts .scala .yaml .yml .json .html .htm .sh .bash",
+          "description": "Space-separated list of file extensions VibeSec will scan (e.g. \".py .ts .go\"). Files outside this list are skipped during multi-target scans and shown as \"not scannable\" in the Scan panel.",
+          "scope": "resource"
+        },
+        "vibesec.llmProvider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "anthropic",
+            "gemini",
+            "groq",
+            "custom"
+          ],
+          "enumDescriptions": [
+            "OpenAI (GPT models). Requires an OpenAI API key.",
+            "Anthropic (Claude models). Requires an Anthropic API key.",
+            "Google Gemini. Requires a Google AI Studio API key.",
+            "Groq. Paste a Groq gsk_ API key; VibeSec fills the Groq endpoint and default model automatically.",
+            "Custom/OpenAI-compatible provider. Requires an API key, model name, and chat completions endpoint."
+          ],
+          "default": "anthropic",
+          "description": "Which AI provider to use when generating fix prompts. Set the matching API key via the command \"VibeSec: Set API Key\".",
+          "scope": "resource"
+        },
+        "vibesec.llmModel": {
+          "type": "string",
+          "default": "claude-haiku-4-5",
+          "description": "Exact model id used for prompt generation. You can write any supported model name for the selected provider, including custom provider model ids.",
+          "scope": "resource"
+        },
+        "vibesec.openPanelOnScan": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open the Analysis Panel automatically whenever a scan starts. Off by default — toggle on if you want the panel to take over the editor area on every scan.",
+          "scope": "resource"
+        },
+        "vibesec.promptMode": {
+          "type": "string",
+          "enum": [
+            "perFile",
+            "perVulnerability",
+            "perProject"
+          ],
+          "enumDescriptions": [
+            "One prompt per file, batching every finding in that file. Cheapest meaningful option — recommended.",
+            "One prompt per finding, plus rolled-up per-file and project-level prompts. Most thorough, most expensive.",
+            "A single prompt covering every finding in the scan. Cheapest possible (one API call) but the AI gets a large context."
+          ],
+          "default": "perFile",
+          "description": "How VibeSec should slice prompts when you click \"Generate Prompts\". You can change this any time without re-scanning.",
+          "scope": "resource"
+        },
+        "vibesec.llmCustomProviderName": {
+          "type": "string",
+          "default": "",
+          "description": "Optional display name for a custom/OpenAI-compatible LLM provider, such as OpenRouter, Groq, Together, or a local gateway.",
+          "scope": "resource"
+        },
+        "vibesec.llmCustomBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Full OpenAI-compatible chat completions endpoint for the custom provider, for example https://api.example.com/v1/chat/completions.",
+          "scope": "resource"
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "vibesec.gettingStarted",
+        "title": "Get started with VibeSec",
+        "description": "Scan your code for security issues in three steps.",
+        "steps": [
+          {
+            "id": "vibesec.step.install",
+            "title": "Install Semgrep",
+            "description": "VibeSec uses Semgrep under the hood. Install it once and you're set.\n\n```\npip install semgrep\n```\n\n[Open Terminal](command:workbench.action.terminal.new)",
+            "media": {
+              "markdown": "media/walkthrough/install.md"
+            },
+            "completionEvents": []
+          },
+          {
+            "id": "vibesec.step.scan",
+            "title": "Run your first scan",
+            "description": "Open any file and run a scan — findings appear in the VibeSec panel on the left.\n\n[$(play) Scan Current File](command:vibesec.scanCurrentFile)",
+            "media": {
+              "markdown": "media/walkthrough/scan.md"
+            },
+            "completionEvents": [
+              "onCommand:vibesec.scanCurrentFile"
+            ]
+          },
+          {
+            "id": "vibesec.step.policy",
+            "title": "Customize with a policy file",
+            "description": "Drop a .vibesec.yaml in your project to control which rules run.\n\n[$(gear) Create Policy File](command:vibesec.openPolicyFile)",
+            "media": {
+              "markdown": "media/walkthrough/policy.md"
+            },
+            "completionEvents": [
+              "onCommand:vibesec.openPolicyFile"
+            ]
+          },
+          {
+            "id": "vibesec.step.prompts",
+            "title": "Hook up an AI provider for fix prompts",
+            "description": "Add an API key (OpenAI, Anthropic, or Gemini) and VibeSec can generate copy-paste fix prompts for every finding.\n\n[$(key) Set API Key](command:vibesec.setApiKey)",
+            "completionEvents": [
+              "onCommand:vibesec.setApiKey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ && node esbuild.design.mjs",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "watch:webview": "node esbuild.design.mjs --watch",
+    "build:webview": "node esbuild.design.mjs"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "minimatch": "^9.0.4"
   },
   "devDependencies": {
-    "@types/vscode": "^1.110.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "typescript-eslint": "^8.56.1",
-    "eslint": "^9.39.3",
-    "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "@types/js-yaml": "^4.0.9",
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.28.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.3.0"
   }
 }

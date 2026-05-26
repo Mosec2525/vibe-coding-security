@@ -1,0 +1,13 @@
+{
+  "deck": "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\VibeSec_Functionality_Testing_and_UML_Diagrams.pptx",
+  "screenshots": [
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\00_vscode_dev_host.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\08_sample_file_open.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\10_scan_current_file_command_results.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\11_control_center_dashboard.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\14_control_center_settings.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\15_command_palette_vibesec.png",
+    "C:\\Users\\MO\\Desktop\\vibesec-ready-v0.8.6-multi-policy\\vibesec-v0.8.6-multi-policy\\docs\\real-screenshots\\16_analysis_full_fix_tab.png"
+  ],
+  "note": "Deck evidence slides use real screenshots from the running VS Code extension."
+}

@@ -1,0 +1,12 @@
+# .vibesec.yaml — edited by VibeSec Control Center
+presets:
+  - vibesec:default
+  - vibesec:taint
+severity:
+  minSeverity: warning
+activePolicyFiles:
+  - rules/default.yaml
+  - rules/taint.yaml
+externalRuleFiles: []
+disabledRules:
+  - vibesec.cors-wildcard-origin-express
