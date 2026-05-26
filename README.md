@@ -19,9 +19,6 @@ No accounts. No cloud. No telemetry. Everything runs on your machine.
 
 ---
 
-## Screenshots
-
-> *(Coming soon)*
 
 ---
 
