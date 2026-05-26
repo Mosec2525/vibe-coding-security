@@ -298,6 +298,4 @@ No backend. No database. No cloud infrastructure. Your API key stays on your mac
 
 ---
 
-## License
 
-MIT
