@@ -190,13 +190,5 @@ vibe-coding-security/
 |-- README.md                User and contributor documentation
 ```
 
-## Version Plan
-
-| Milestone | Scope | Status |
-| --- | --- | --- |
-| v0.8.7 | README accuracy and Marketplace metadata | Complete |
-| v0.8.8 | Tests and CI test job | Complete |
-| v0.9.0 | Packaging audit and VSIX release workflow | Complete |
-| v1.0.0 | Stable release docs, screenshots, test coverage, and release notes | Complete |
 
 
