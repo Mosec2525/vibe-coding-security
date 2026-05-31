@@ -44,9 +44,13 @@ docker run --rm -v "$PWD:/workspace" vibesec:local --no-fail-on-findings
 
 ## Published Image
 
-The Docker workflow publishes images to GitHub Container Registry on pushes to `main` and version tags:
+The public image is available on Docker Hub:
+
+<https://hub.docker.com/r/mosec2525/vibesec>
 
 ```bash
-docker pull ghcr.io/mosec2525/vibesec:latest
-docker run --rm -v "$PWD:/workspace" ghcr.io/mosec2525/vibesec:latest
+docker pull mosec2525/vibesec:latest
+docker run --rm -v "$PWD:/workspace" mosec2525/vibesec:latest
 ```
+
+The GitHub workflow also publishes a mirror to GitHub Container Registry on pushes to `main` and version tags.

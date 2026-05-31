@@ -47,7 +47,7 @@ Options:
   -v, --version             Show version
 
 Docker:
-  docker run --rm -v "$PWD:/workspace" ghcr.io/mosec2525/vibesec:1.0.0
+  docker run --rm -v "$PWD:/workspace" mosec2525/vibesec:latest
 `;
 
 function extensionRoot(): string {

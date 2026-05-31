@@ -61,13 +61,15 @@ semgrep --version
 Use the Docker scanner when you want zero host setup for Semgrep:
 
 ```bash
-docker run --rm -v "$PWD:/workspace" ghcr.io/mosec2525/vibesec:latest
+docker run --rm -v "$PWD:/workspace" mosec2525/vibesec:latest
 ```
+
+Docker Hub: <https://hub.docker.com/r/mosec2525/vibesec>
 
 PowerShell:
 
 ```powershell
-docker run --rm -v "${PWD}:/workspace" ghcr.io/mosec2525/vibesec:latest
+docker run --rm -v "${PWD}:/workspace" mosec2525/vibesec:latest
 ```
 
 The image scans `/workspace` by default, uses `.vibesec.yaml` when present, and exits `1` when findings are detected. For local image development:
