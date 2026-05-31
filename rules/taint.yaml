@@ -1,6 +1,6 @@
 # VibeSec Default Taint Policy
 # File: rules/taint.yaml
-# Purpose: high-confidence source -> sink data-flow checks for VibeSec v0.8.5+
+# Purpose: high-confidence source -> sink data-flow checks for the VibeSec taint policy.
 #
 # This file is a Semgrep-compatible taint ruleset. It is designed to be used as:
 #   presets:

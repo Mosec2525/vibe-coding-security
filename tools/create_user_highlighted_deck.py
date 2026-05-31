@@ -95,7 +95,7 @@ def side_nav(d, active="Dashboard", control_center=True):
         y += 46
     d.line((0, H - 76, 245, H - 76), fill=LINE)
     txt(d, (12, H - 48), "idle", fill=ACCENT, fnt=F_SMALL)
-    txt(d, (18, H - 25), "v0.8.6", fill=FAINT, fnt=F_MONO_SMALL)
+    txt(d, (18, H - 25), "v1.0.0", fill=FAINT, fnt=F_MONO_SMALL)
 
 
 def top(d, title, crumb):

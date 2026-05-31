@@ -471,7 +471,7 @@ function hasSelectorPolicyFields(raw: Record<string, unknown>): boolean {
 function selectorEntriesFromRaw(raw: Record<string, unknown>): SelectorPolicyEntry[] {
   const entries: SelectorPolicyEntry[] = [];
 
-  // v0.8.6: the workspace selector can hold any number of active policy files.
+  // The workspace selector can hold any number of active policy files.
   // Empty array is meaningful: scan with zero policy files and return zero findings.
   const many = rawStringArray(raw, "activePolicyFiles");
   if (Array.isArray(raw.activePolicyFiles)) {
@@ -553,7 +553,7 @@ export function loadPolicy(workspaceRoot: string, extensionRoot?: string): Polic
   }
 
   // .vibesec.yaml may act as a selector for any number of active policy
-  // files. v0.8.6 supports mixing multiple normal and taint policies together.
+  // files. VibeSec supports mixing multiple normal and taint policies together.
   // An empty activePolicyFiles array is intentional and means "scan with no
   // policies" instead of silently falling back to bundled defaults.
   if (isRecord(raw)) {
@@ -603,7 +603,7 @@ export function loadPolicy(workspaceRoot: string, extensionRoot?: string): Polic
   const mergedRules  = [...inlineRules, ...externalRules];
   const uniqueRules  = deduplicateRules(mergedRules, errors);
 
-  // A policy with zero presets and zero rules is valid in v0.8.6.
+  // A policy with zero presets and zero rules is valid.
   // It means the user intentionally turned every policy file OFF, so scans
   // should return zero findings instead of silently running default.yaml.
 

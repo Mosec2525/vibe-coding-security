@@ -291,7 +291,7 @@ interface WorkspacePolicyState {
   policyExists: boolean;
   presets: string[];
   disabledRules: Set<string>;
-  /** v0.8.6: any number of active policy files. */
+  /** Any number of active policy files. */
   activePolicyFiles: Set<string>;
   hasInlineRules: boolean;
 }
@@ -361,7 +361,7 @@ function readWorkspacePolicyState(workspaceRoot: string | undefined, extensionPa
 
     const activePolicyFiles = new Set<string>();
 
-    // v0.8.6: any number of active policy files. Empty array means none.
+    // Any number of active policy files. Empty array means none.
     const explicitMany = asStringArray(obj.activePolicyFiles);
     if (Array.isArray(obj.activePolicyFiles) && explicitMany) {
       for (const rel of explicitMany) {

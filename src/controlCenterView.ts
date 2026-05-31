@@ -798,7 +798,7 @@ export class ControlCenterController implements vscode.Disposable {
   }
 
   private readActivePolicyFiles(doc: Record<string, unknown>): string[] {
-    // v0.8.6: explicit list supports any number of active policies. Empty list is valid.
+    // Explicit list supports any number of active policies. Empty list is valid.
     if (Array.isArray(doc.activePolicyFiles)) {
       return this.uniquePolicyFiles(doc.activePolicyFiles.filter((v): v is string => typeof v === "string"));
     }
@@ -834,7 +834,7 @@ export class ControlCenterController implements vscode.Disposable {
 
     doc.activePolicyFiles = next;
 
-    // v0.8.6 replaces the older single-slot/two-slot selector fields.
+    // The active policy list replaces the older single-slot/two-slot selector fields.
     delete doc.activePolicyFile;
     delete doc.activePolicyKind;
     delete doc.activeNormalPolicyFile;
